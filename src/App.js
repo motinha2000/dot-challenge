@@ -12,6 +12,7 @@ function App() {
     }
     console.log(newDot)
     setList((prev) => [...prev, newDot]);
+    setUndid([]);
   };
   
 const handleUndo = (event) => {
@@ -49,10 +50,14 @@ const handleRedo = (event) => {
 
   return (
     <div id='page' onClick={handleClick}>
-      <button class="btn" onClick={handleUndo}>Desfazer</button>
+      <button onClick={handleUndo}>Desfazer</button>
       <button onClick={handleRedo}>Refazer</button>
-      {list.map(item => (
-         <span className='dot' style={{left: item.clientX, top: item.clientY}} />
+      {list.map((item, index) => (
+         <span 
+         key={index}
+         className='dot' 
+         style={{left: item.clientX, top: item.clientY}} 
+         />
          ))}
         
     </div>
