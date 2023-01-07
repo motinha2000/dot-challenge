@@ -1,9 +1,23 @@
+import { useState } from 'react';
 import './App.css';
 
+
 function App() {
+  const [list, setList] = useState([]);
+  const handleClick = (event) => {
+    const newDot = {
+      clientX: event.clientX,
+      clientY: event.clientY,
+    }
+    console.log(newDot)
+    setList((prev) => [...prev, newDot]);
+  };
   return (
-    <div className="App">
-      <h1>Olá Mundo!</h1>
+    <div id='page' onClick={(handleClick)}>
+      {list.map(item => (
+         <span className='dot' style={{left: item.clientX, top: item.clientY}} />
+         ))}
+        
     </div>
   );
 }
